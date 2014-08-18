@@ -1,5 +1,5 @@
 ﻿using CedenoB_ZombieGame.Model;
-using CedenoB_ZombieGame.Model.Players;
+using ZombieApocalypseSimulator;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -53,6 +53,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Combat\CombatManager.cs" />
     <Compile Include="Items\BearTrap.cs" />
     <Compile Include="Items\HandgunAmmo.cs" />
     <Compile Include="Items\HealthPack.cs" />
@@ -76,19 +77,30 @@
     <Compile Include="Items\Special.cs" />
     <Compile Include="Items\Sport.cs" />
     <Compile Include="Items\Turret.cs" />
+    <Compile Include="Model\Character.cs" />
+    <Compile Include="Model\Dice.cs" />
+    <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\MeleeWeapon.cs" />
+    <Compile Include="Model\Inventory.cs" />
+    <Compile Include="Model\Players\Player.cs" />
+    <Compile Include="Model\Players\SharpShooter.cs" />
+    <Compile Include="Model\Players\Survivalist.cs" />
+    <Compile Include="Model\Players\Warrior.cs" />
+    <Compile Include="Items\SurvivalKnife.cs" />
+    <Compile Include="Model\RangedWeapon.cs" />
+    <Compile Include="Model\SmallCrowbar.cs" />
+    <Compile Include="Model\SurvivalKnife.cs" />
+    <Compile Include="Model\Weapon.cs" />
     <Compile Include="Model\Zed\FastAttack.cs" />
     <Compile Include="Model\Zed\Shank.cs" />
-    <Compile Include="Model\Players\SharpShooter.cs" />
+    <Compile Include="Model\Zed\Sloucher.cs" />
     <Compile Include="Model\Zed\Spitter.cs" />
-    <Compile Include="Items\SurvivalKnife.cs" />
     <Compile Include="Model\Zed\Tank.cs" />
+    <Compile Include="Model\Zed\Zed.cs" />
     <Compile Include="Testing other things\Entity.cs" />
     <Compile Include="Testing other things\ImageConverter.cs" />
-    <Compile Include="Model\Character.cs" />
     <Compile Include="Items\GameImages.cs" />
     <Compile Include="Items\Item.cs" />
-    <Compile Include="Model\Players\Warrior.cs" />
-    <Compile Include="Model\Zed\Sloucher.cs" />
     <Compile Include="Model\Square.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -104,7 +116,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Players\Survivalist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

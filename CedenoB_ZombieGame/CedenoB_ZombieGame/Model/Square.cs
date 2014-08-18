@@ -8,7 +8,7 @@ using System.Windows.Input;
 using CedenoB_ZombieGame.Model;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using CedenoB_ZombieGame.Model.Players;
+using ZombieApocalypseSimulator;
 
 namespace CedenoB_ZombieGame
 {
@@ -281,7 +281,7 @@ namespace CedenoB_ZombieGame
 				if (IsOpen)
 				{
 					Label l = new Label();
-					Token = new Warrior();
+					Token = new Warrior("Warrior");
 					l.Width = 50;
 					l.Height = 45;
 					ImageBrush brush = new ImageBrush();
@@ -296,7 +296,7 @@ namespace CedenoB_ZombieGame
 				if (IsOpen)
 				{
 					Label l = new Label();
-					Token = new SharpShooter();
+					Token = new SharpShooter("SharpShooter");
 					l.Width = 50;
 					l.Height = 50;
 					ImageBrush brush = new ImageBrush();
@@ -311,7 +311,7 @@ namespace CedenoB_ZombieGame
 				if (IsOpen)
 				{
 					Label l = new Label();
-					Token = new Survivalist();
+					Token = new Survivalist("Surviver");
 					l.Width = 48;
 					l.Height = 45;
 					
@@ -327,7 +327,7 @@ namespace CedenoB_ZombieGame
 				if (IsOpen)
 				{
 					Label l = new Label();
-					Token = new Sloucher();
+					Token = new Sloucher("Sloucher");
 					l.Width = 40;
 					l.Height = 40;
 					ImageBrush brush = new ImageBrush();
@@ -342,7 +342,7 @@ namespace CedenoB_ZombieGame
 				if (IsOpen)
 				{
 					Label l = new Label();
-					Token = new FastAttack();
+					Token = new FastAttack("FastAttack");
 					l.Width = 40;
 					l.Height = 40;
 					ImageBrush brush = new ImageBrush();
@@ -357,7 +357,7 @@ namespace CedenoB_ZombieGame
 				if (IsOpen)
 				{
 					Label l = new Label();
-					Token = new Tank();
+					Token = new Tank("Tank");
 					l.Width = 40;
 					l.Height = 40;
 					ImageBrush brush = new ImageBrush();
@@ -371,7 +371,7 @@ namespace CedenoB_ZombieGame
 			else if (gmMenu.Name == "Shank")
 			{
 				Label l = new Label();
-				Token = new Shank();
+				Token = new Shank("Shank");
 				l.Width = 40;
 				l.Height = 40;
 				ImageBrush brush = new ImageBrush();
@@ -384,7 +384,7 @@ namespace CedenoB_ZombieGame
 			else if (gmMenu.Name == "Spitter")
 			{
 				Label l = new Label();
-				Token = new Spitter();
+				Token = new Spitter("Spitter");
 				l.Width = 40;
 				l.Height = 40;
 				ImageBrush brush = new ImageBrush();

@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace CedenoB_ZombieGame.Model
+namespace ZombieApocalypseSimulator
 {
-	class Survivalist : Character
-	{
-
-	}
+    class Survivalist:Player
+    {
+         public Survivalist(string name):base(name)
+        {
+            PlayerClass = ClassPlayer.Survivalist;
+            Dodge += 2;
+        }
+    }
 }

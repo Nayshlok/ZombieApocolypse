@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CedenoB_ZombieGame.Model.Players
+namespace ZombieApocalypseSimulator
 {
-    public class Warrior : Character
+    class Warrior:Player
     {
-        public Warrior()
+        public Warrior(string name):base(name)
         {
-
+            PlayerClass = ClassPlayer.Warrior;
+            AR += 2;
+            Parry += 2;
         }
     }
 }
