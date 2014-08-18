@@ -27,6 +27,7 @@ namespace Shop.CodeTest
             Currency = money;
             currentItems = new ObservableCollection<Items>();
             PB = beauty;
+            
         }
         public void addToInventory(Items item)
         {

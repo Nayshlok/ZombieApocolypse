@@ -1,4 +1,5 @@
-﻿using Shop.CodeTest;
+﻿#region CodeBehind
+using Shop.CodeTest;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
@@ -96,24 +97,31 @@ namespace Shop
             item = ((Items)shopItems.SelectedItem);
 
             double.TryParse(currentplayer._Currency, out currentgold);
-            if (item != null)
+            if (currentplayer.currentItems.Count <= 9 && currentplayer.currentItems.Count >= 0)
             {
-                if (currentgold >= ((Items)shopItems.SelectedItem).Price)
+                if (item != null)
                 {
-                    currentgold = currentgold - ((Items)shopItems.SelectedItem).Price;
-                    currentplayer.addToInventory(item);
+                    if (currentgold >= ((Items)shopItems.SelectedItem).Price)
+                    {
+                        currentgold = currentgold - ((Items)shopItems.SelectedItem).Price;
+                        currentplayer.addToInventory(item);
 
-                    sendbackgold = currentgold.ToString();
-                    currentplayer.Currency = sendbackgold;
+                        sendbackgold = currentgold.ToString();
+                        currentplayer.Currency = sendbackgold;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sorry pal, you don't have enough currency for that!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Sorry pal, you don't have enough currency for that!");
+                    MessageBox.Show("I'm sorry, what was that you wanted?");
                 }
             }
             else
             {
-                MessageBox.Show("I'm sorry, what was that you wanted?");
+                MessageBox.Show("Sorry, your inventory is full!");
             }
         }
         #endregion
@@ -190,8 +198,10 @@ namespace Shop
         #region UpdatePrices
         public void updatePrices()
         {
+
             for (int i = 0; i < shopList.Count; i++)
             {
+
                 if (currentplayer.PB >= 10 && currentplayer.PB <= 16)
                     bonus = shopList[i].sellPrice * .20;
                 else if (currentplayer.PB >= 17 && currentplayer.PB <= 25)
@@ -200,10 +210,23 @@ namespace Shop
                     bonus = shopList[i].sellPrice;
                 else
                     bonus = 0;
-
                 shopList[i].sellPrice = shopList[i].sellPrice + bonus;
+            }
+            for (int i = 0; i < currentplayer.currentItems.Count; i++)
+            {
+
+                if (currentplayer.PB >= 10 && currentplayer.PB <= 16)
+                    bonus = shopList[i].sellPrice * .20;
+                else if (currentplayer.PB >= 17 && currentplayer.PB <= 25)
+                    bonus = shopList[i].sellPrice * .50;
+                else if (currentplayer.PB >= 26 && currentplayer.PB <= 30)
+                    bonus = shopList[i].sellPrice;
+                else
+                    bonus = 0;
+                currentplayer.currentItems[i].sellPrice = shopList[i].sellPrice + bonus;
             }
         }
         #endregion
     }
 }
+#endregion
