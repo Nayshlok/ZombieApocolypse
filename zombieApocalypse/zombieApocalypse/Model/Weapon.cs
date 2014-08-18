@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace zombieApocalypse.Model
+{
+    class Weapon
+    {
+        public Dice baseDamage { get; set; }
+        public bool ignoreAR { get; set; }
+    }
+}
