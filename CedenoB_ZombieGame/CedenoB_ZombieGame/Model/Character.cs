@@ -8,6 +8,9 @@ namespace ZombieApocalypseSimulator
 {
     class Character
     {
+        public int x { get; set; }
+        public int y { get; set; }
+
         private int _HP;
         public int HP
         {

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
 
 
 namespace CedenoB_ZombieGame
@@ -25,9 +26,15 @@ namespace CedenoB_ZombieGame
 	{
 		Square[,] GameBoard;
 
+        public int stageHeight { get; set; }
+        public int stageWidth { get; set; }
+
 		public MainWindow()
 		{
-			InitializeComponent();
+            InitializeComponent();
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            this.SourceInitialized += (s, a) => this.WindowState = WindowState.Maximized;
+            this.DataContext = this;
 			SetupEntityGrid();
 
 		}
@@ -41,15 +48,15 @@ namespace CedenoB_ZombieGame
 			{
 				for (int y = 0; y < 25; y++)
 				{
-					Square r = new Square { Background = Brushes.MintCream };
-					GameBoard[x, y] = r;
+					Square r = new Square { Background = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)) };
+                    GameBoard[x, y] = r;
 					GameBoard[x, y].Margin = new Thickness(1);
 					GameUniformGrid.Children.Add(GameBoard[x, y]);
 
 				}
 			}
 		}
-	}
+    }
 }
 
 
