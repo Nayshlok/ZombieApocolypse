@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-namespace Shop.CodeTest
+namespace PlayerTrading.CodeTest
 {
     public class Player : INotifyPropertyChanged
     {
@@ -10,7 +10,7 @@ namespace Shop.CodeTest
         public string _Currency;
         public string Currency
         {
-            
+
             set
             {
                 this._Currency = value;
@@ -27,19 +27,19 @@ namespace Shop.CodeTest
             Currency = money;
             currentItems = new ObservableCollection<Items>();
             PB = beauty;
-            
+
         }
         public void addToInventory(Items item)
         {
             currentItems.Add(item);
         }
-        public void removeFromInventory(Items item)
-        {
-            currentItems.Remove(item);
-        }
         public void removeFromInventory(byte index)
         {
             currentItems.RemoveAt(index);
+        }
+        public void removeFromInventory(Items item)
+        {
+            currentItems.Remove(item);
         }
 
         private void FirePropertyChanged(string p)

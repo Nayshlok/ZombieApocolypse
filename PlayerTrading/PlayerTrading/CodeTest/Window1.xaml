@@ -1,0 +1,35 @@
+﻿<Window x:Class="PlayerTrading.CodeTest.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Players" Height="425" Width="500"
+        Background="Black">
+    <Grid>
+        <StackPanel x:Name="players">
+            <Label Foreground="LimeGreen">Players:</Label>
+            <Grid>
+                <ListBox x:Name="playChoices" Height="300"
+                     ScrollViewer.VerticalScrollBarVisibility="Visible"
+                     AlternationCount="2"
+                         Background="Black"
+                         BorderBrush="Gray"
+                         SelectionMode="Multiple">
+                    <ListBox.ItemTemplate >
+                        <DataTemplate>
+                            <UniformGrid Columns="5"
+                                     >
+                                <Label Height="30" Width="100" Foreground="LimeGreen" Content="{Binding name}"></Label>
+                                <Label Height="30" Width="100" Foreground="LimeGreen">Beauty:</Label>
+                                <Label Content="{Binding PB}" Height="30" Width="100" Foreground="LimeGreen"></Label>
+                                <Label Height="30" Width="100" Foreground="LimeGreen">Currency:</Label>
+                                <Label Content="{Binding Currency}" Height="30" Width="100" Foreground="LimeGreen"></Label>
+                            </UniformGrid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+            <UniformGrid>
+                <Button x:Name="openShop" Height="50" Width="100" Click="openShop_Click" Background="Black" Foreground="LimeGreen">Trade!</Button>
+            </UniformGrid>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,5 +1,6 @@
 ﻿#region CodeBehind
 using Shop.CodeTest;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
@@ -12,18 +13,16 @@ namespace Shop
     public partial class MainWindow : Window
     {
         #region Variables
-        string shownBonus;
-        double bonus;
+        string shownBonus, sendbackgold, messageBoxText, caption;
+        double bonus, currentgold, totalprice;
         Player currentplayer;
-        string sendbackgold;
-        double currentgold;
         ObservableCollection<Items> shopList;
         Items item;
-        string messageBoxText;
-        string caption;
         MessageBoxButton button;
         MessageBoxImage icon;
         MessageBoxResult result;
+        int initialval, inventorycheck;
+        List<Items> selectedItemIndexes;
         #endregion
 
         #region Main
@@ -94,34 +93,51 @@ namespace Shop
         #region BuyItemHandler
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            item = ((Items)shopItems.SelectedItem);
+            selectedItemIndexes = new List<Items>();
 
-            double.TryParse(currentplayer._Currency, out currentgold);
-            if (currentplayer.currentItems.Count <= 9 && currentplayer.currentItems.Count >= 0)
+            foreach (object o in shopItems.SelectedItems)
             {
-                if (item != null)
+                selectedItemIndexes.Add((Items)o);
+            }
+            totalprice = 0;
+            foreach (object o in shopItems.SelectedItems)
+            {
+                totalprice = totalprice + ((Items)o).Price;
+            }
+            initialval = shopItems.SelectedItems.Count;
+            inventorycheck = currentplayer.currentItems.Count + shopItems.SelectedItems.Count;
+            double.TryParse(currentplayer._Currency, out currentgold);
+
+            if (shopItems.SelectedItem == null)
+            {
+                MessageBox.Show("Please select something to sell!");
+            }
+
+            else
+            {
+                if (inventorycheck <= 10 && inventorycheck >= 0)
                 {
-                    if (currentgold >= ((Items)shopItems.SelectedItem).Price)
+                    if (currentgold >= totalprice)
                     {
-                        currentgold = currentgold - ((Items)shopItems.SelectedItem).Price;
-                        currentplayer.addToInventory(item);
+                        for (int i = 0; i < initialval; i++)
+                        {
+                            currentplayer.addToInventory(selectedItemIndexes[i]);
+                        }
+                        currentgold = currentgold - totalprice;
 
                         sendbackgold = currentgold.ToString();
                         currentplayer.Currency = sendbackgold;
                     }
                     else
                     {
-                        MessageBox.Show("Sorry pal, you don't have enough currency for that!");
+                        MessageBox.Show("Sorry pal, you don't have enough money!");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("I'm sorry, what was that you wanted?");
+                    MessageBox.Show("Looks like you have too many items in your inventory!");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Sorry, your inventory is full!");
+            
             }
         }
         #endregion
@@ -129,28 +145,43 @@ namespace Shop
         #region SellItemHandler
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            item = ((Items)playerItems.SelectedItem);
-            if (item != null)
-            {        
-                double.TryParse(currentplayer._Currency, out currentgold);
-                currentgold = currentgold + (((Items)playerItems.SelectedItem).sellPrice);
-                currentplayer.removeFromInventory((byte)playerItems.SelectedIndex);
+            List<Items> selectedItemIndexes = new List<Items>();
+
+            foreach (object o in playerItems.SelectedItems)
+            {
+                selectedItemIndexes.Add((Items)o);
+            }
+            double totalprice = 0;
+            foreach (object o in playerItems.SelectedItems)
+            {
+                totalprice = totalprice + ((Items)o).sellPrice;
+            }
+            initialval = playerItems.SelectedItems.Count;
+            double.TryParse(currentplayer._Currency, out currentgold);
+
+            if (playerItems.SelectedItem == null)
+            {
+                MessageBox.Show("Please select something to sell!");
+            }
+            else
+            {
+                for (int i = 0; i < initialval; i++)
+                {
+                    currentplayer.removeFromInventory(selectedItemIndexes[i]);
+
+                }
+                currentgold = currentgold + totalprice;
 
                 sendbackgold = currentgold.ToString();
                 currentplayer.Currency = sendbackgold;
             }
-            else
-            {
-                MessageBox.Show("What is it you are selling?");
-            }
-
         }
         #endregion
 
         #region BonusInfo
         private void Label_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("This is the bonus you will get for selling items. You will recieve a " + shownBonus + " bonus on any items you sell. Physical Beauty matters here. Increase it to get higher bonuses!");
+            MessageBox.Show("This is the bonus you will get for selling items. You will recieve a " + shownBonus + " bonus on the original sell price on any items you sell. Physical Beauty matters here. Increase it to get higher bonuses!");
         }
         #endregion
 
