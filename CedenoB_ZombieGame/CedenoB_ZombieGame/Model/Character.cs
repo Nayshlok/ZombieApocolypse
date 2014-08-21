@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace ZombieApocalypseSimulator
 {
-    class Character
+    public class Character
     {
-        public int x { get; set; }
-        public int y { get; set; }
 
         private int _HP;
         public int HP
@@ -165,7 +163,10 @@ namespace ZombieApocalypseSimulator
             set { _canParry = value; }
         }
 
-
+        public override string ToString()
+        {
+            return Name + ": HP = " + HP + ", SDC = " + SCD;
+        }
 
         private Random rand = new Random();
         public int DummyDice(int max, int numb = 1, int min = 0)

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ZombieApocalypseSimulator;
 using zombieApocalypse.Model;
+using CedenoB_ZombieGame.Combat;
 
 namespace zombieApocalypse.Combat
 {
@@ -20,6 +21,7 @@ namespace zombieApocalypse.Combat
         private int MeleePSBonus;
         private int MeleePPBonus;
         private Character attacker, defender;
+        private CombatResults results;
 
         /// <summary>
         /// The only method that can be called outside the class. It will take in two Character objects and try to battle them.
@@ -28,13 +30,14 @@ namespace zombieApocalypse.Combat
         /// <param name="attacker"></param>
         /// <param name="defender"></param>
         /// <returns>A boolean that represents that damage was dealt in combat.</returns>
-        public bool startCombat(Character attacker, Character defender)
+        public CombatResults startCombat(Character attacker, Character defender)
         {
+            results = new CombatResults();
             if ((attacker is Player && defender is Player)
                 || (attacker is Zed && defender is Zed))
             {
-                Console.WriteLine("The combatants are allies");
-                return false;
+                results.Message = "The combatants are allies";
+                return results;
             }
             else
             {
@@ -50,7 +53,7 @@ namespace zombieApocalypse.Combat
                         damageHP = (((Zed)attacker) is Shank) ? true : false;
                     }
                     int damage = damageDone();
-                    Console.WriteLine("Damage done: " + damage);
+                    results.Damage = damage;
                     if (defender.SCD >= damage && !damageHP)
                     {
                         defender.SCD -= damage;
@@ -65,11 +68,12 @@ namespace zombieApocalypse.Combat
                     {
                         defender.HP -= damage;
                     }
-                    return true;
+                    return results;
                 }
                 else
                 {
-                    return false;
+                    results.Message = "Attack missed";
+                    return results;
                 }
             }
         }
@@ -80,7 +84,6 @@ namespace zombieApocalypse.Combat
             this.defender = defender;
             this.isCritSuccess = true;
             setAttackerBonuses();
-            Console.WriteLine("Damage is: " + damageDone());
         }
 
         /// <summary>
@@ -137,16 +140,11 @@ namespace zombieApocalypse.Combat
 
             int baseRoll = D20.Roll();
             isCritSuccess = (baseRoll == 20) ? true : false;
-            //Test code for demo
-            if (isCritSuccess)
-            {
-                Console.WriteLine("Attack was Critical");
-            }
+            results.AttackCrit = isCritSuccess;
 
             if (baseRoll == 1)
             {
-                //Demo display
-                Console.WriteLine("Attack critically failed.");
+                results.AttackFail = true;
 
                 return false;
             }
@@ -158,6 +156,8 @@ namespace zombieApocalypse.Combat
             {
                 toHit += ((Player)attacker).bonusToHit();
             }
+
+            results.AttackRoll = toHit;
 
             int AR = 4;
             if (defender is Player)
@@ -177,20 +177,17 @@ namespace zombieApocalypse.Combat
             }
             int defendAttempt = defendChance();
 
+            results.DefendRoll = defendAttempt;
+
             if (toHit > AR || isDefendFail)
             {
                 botchDefend = (toHit > AR && isDefendFail) ? true : false;
-                //Demo code
-                if(botchDefend)
-                    Console.WriteLine("Botched defense");
 
                 if ((toHit > defendAttempt && !isDefendCrit) || isDefendFail || (isCritSuccess && !isDefendCrit))
                 {
-                    Console.WriteLine("Attacker was successful: " + toHit);
                     return true;
                 }
             }
-            Console.WriteLine("Attacker Failed with: " + toHit);
             return false;
         }
 
@@ -205,14 +202,10 @@ namespace zombieApocalypse.Combat
             {
                 int defense = D20.Roll();
                 isDefendCrit = (defense == 20) ? true : false;
-                //Demo code
-                if (isDefendCrit)
-                    Console.WriteLine("Critical Defense");
+                results.DefendCrit = isDefendCrit;
 
                 isDefendFail = (defense == 1) ? true : false;
-                //Demo code
-                if(isDefendFail)
-                    Console.WriteLine("Failed defense");
+                results.DefendFail = isDefendFail;
 
                 if (defendOption == Defense.Parry && defender is Player)
                 {
@@ -224,7 +217,6 @@ namespace zombieApocalypse.Combat
                 {
                     defense += ((defender.PP - 14) / 2);
                 }
-                Console.WriteLine("Defender " + defendOption +": " + defense);
                 return defense;
             }
             else
@@ -298,7 +290,6 @@ namespace zombieApocalypse.Combat
 
             isPierce = (attacker is Zed && ((Zed)attacker) is Shank) ? true : false;
             
-
             return isPierce;
         }
     }

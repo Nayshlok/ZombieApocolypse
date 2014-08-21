@@ -54,6 +54,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Combat\CombatManager.cs" />
+    <Compile Include="Combat\CombatResults.cs" />
     <Compile Include="Items\BearTrap.cs" />
     <Compile Include="Items\HandgunAmmo.cs" />
     <Compile Include="Items\HealthPack.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Items\Sport.cs" />
     <Compile Include="Items\Turret.cs" />
     <Compile Include="Model\Character.cs" />
+    <Compile Include="Model\Delegates.cs" />
     <Compile Include="Model\Dice.cs" />
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\MeleeWeapon.cs" />

@@ -6,9 +6,11 @@
         <Border Height="55" Background="SkyBlue" BorderBrush="Black" BorderThickness="1" DockPanel.Dock="Top">
             <TextBlock Foreground="Black">Dock = "Top"</TextBlock>
         </Border>
-        <Grid DockPanel.Dock="Left" Width="250"></Grid>
+        <Grid DockPanel.Dock="Left" Width="250">
+            <Button x:Name="testButton" VerticalAlignment="Top" Click="testButton_Click_1">Show combat</Button>
+        </Grid>
         <Grid DockPanel.Dock="Right" Width="250"></Grid>
-        <Canvas x:Name="GameGrid" DockPanel.Dock="Bottom" Background="Brown">
+        <Canvas x:Name="GameGrid" DockPanel.Dock="Bottom" Background="Brown" MouseLeftButtonDown="GameGrid_MouseLeftButtonDown_1">
             <UniformGrid x:Name="GameUniformGrid" Grid.Column="1" Height="{Binding ElementName=GameGrid, Path=ActualHeight}" 
                      Width="{Binding ElementName=GameGrid, Path=ActualWidth}">
             </UniformGrid>

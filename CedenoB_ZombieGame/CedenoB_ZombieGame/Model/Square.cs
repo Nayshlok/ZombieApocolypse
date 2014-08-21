@@ -9,6 +9,7 @@ using CedenoB_ZombieGame.Model;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ZombieApocalypseSimulator;
+using System.Windows;
 
 namespace CedenoB_ZombieGame
 {
@@ -17,6 +18,10 @@ namespace CedenoB_ZombieGame
 		List<Item> Items = new List<Item>();
 		Character Token;
 		bool isOpen = false;
+        private Delegates.SelectCharacter PassCharacter;
+
+        public int X { get; set; }
+        public int Y { get; set; }
 
 		public bool IsOpen
 		{
@@ -43,6 +48,20 @@ namespace CedenoB_ZombieGame
 		{
 			this.MouseRightButtonDown += r_GMContextMenu;
 		}
+
+        public Square(Delegates.SelectCharacter characterPass, int X, int Y)
+        {
+            this.X = X;
+            this.Y = Y;
+            PassCharacter += characterPass;
+            this.MouseLeftButtonDown += selectCharacter;
+            this.MouseRightButtonDown += r_GMContextMenu;
+        }
+
+        private void selectCharacter(object sender, MouseButtonEventArgs e)
+        {
+            PassCharacter(Token, X, Y);
+        }
 
 		private void r_GMContextMenu(object sender, MouseButtonEventArgs e)
 		{
