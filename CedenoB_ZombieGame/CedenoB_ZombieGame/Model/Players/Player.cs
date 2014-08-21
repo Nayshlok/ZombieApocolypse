@@ -16,6 +16,10 @@ namespace ZombieApocalypseSimulator
 
     class Player:Character
     {
+        Random rand = new Random();
+        private int turnsDead { get; set; }
+        
+
         private ClassPlayer _PlayerClass;
         public ClassPlayer PlayerClass
         {
@@ -46,6 +50,52 @@ namespace ZombieApocalypseSimulator
         public Player(string name):base(name)
         {
 
+        }
+
+        public void Zombify(Player playerChecked)
+        {
+            
+            if (playerChecked.IsLiving == false)
+            {
+                playerChecked.ZombifyChance = 5 * turnsDead;
+                int random = rand.Next(0, 100);
+                //Chance to become Zombie
+                if (random >= playerChecked.ZombifyChance && random <= playerChecked.ZombifyChance)
+                {
+                   random = rand.Next(0, 102);
+                   //Zombie Type radomness
+                   if (random >= 0 && random <= 39)
+                   {
+                       Sloucher sloucher = new Sloucher(playerChecked.Name);
+                   }
+                   else if (random >= 40 && random <= 59)
+                   {
+                       FastAttack fastattack = new FastAttack(playerChecked.Name);
+                   }
+                   else if (random >= 60 && random <= 79)
+                   {
+                       Spitter spitter = new Spitter(playerChecked.Name);
+                   }
+                   else if (random >= 80 && random <= 89)
+                   {
+                       Shank shank = new Shank(playerChecked.Name);
+                   }
+                   else if (random >= 90 && random <= 99)
+                   {
+                       Tank tank = new Tank(playerChecked.Name);
+                   }
+                       //This else is here to handle any randomization that my go wrong.
+                   else
+                   {
+                       Sloucher sloucher = new Sloucher(playerChecked.Name);
+                   }
+                }
+            }
+            else
+            {
+
+            }
+            playerChecked.turnsDead = playerChecked.turnsDead + 1;
         }
 
         public int bonusToHit()
@@ -96,5 +146,6 @@ namespace ZombieApocalypseSimulator
 
             return bonus;
         }
+        
     }
 }
