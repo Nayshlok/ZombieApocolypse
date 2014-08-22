@@ -10,7 +10,7 @@
             <Button x:Name="testButton" VerticalAlignment="Top" Click="testButton_Click_1">Show combat</Button>
         </Grid>
         <Grid DockPanel.Dock="Right" Width="250"></Grid>
-        <Canvas x:Name="GameGrid" DockPanel.Dock="Bottom" Background="Brown" MouseLeftButtonDown="GameGrid_MouseLeftButtonDown_1">
+        <Canvas x:Name="GameGrid" DockPanel.Dock="Bottom" Background="Brown">
             <UniformGrid x:Name="GameUniformGrid" Grid.Column="1" Height="{Binding ElementName=GameGrid, Path=ActualHeight}" 
                      Width="{Binding ElementName=GameGrid, Path=ActualWidth}">
             </UniformGrid>

@@ -79,6 +79,7 @@
     <Compile Include="Items\Sport.cs" />
     <Compile Include="Items\Turret.cs" />
     <Compile Include="Model\Character.cs" />
+    <Compile Include="Model\Coordinate.cs" />
     <Compile Include="Model\Delegates.cs" />
     <Compile Include="Model\Dice.cs" />
     <Compile Include="Model\Item.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Items\GameImages.cs" />
     <Compile Include="Items\Item.cs" />
     <Compile Include="Model\Square.cs" />
+    <Compile Include="View\CombatGUI.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -144,9 +146,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Images\BearTrap.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -210,8 +210,8 @@ namespace ZombieApocalypseSimulator
             SquaresToMove = DummyDice(6, 3);
             Name = name;
             IsLiving = true;
-            CanDodge = false;
-            CanParry = false;
+            CanDodge = true;
+            CanParry = true;
             AR = 14;
             Initiative = DummyDice(6, 3);
         }

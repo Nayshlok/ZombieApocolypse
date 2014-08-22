@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using ZombieApocalypseSimulator;
 using zombieApocalypse.Model;
-using CedenoB_ZombieGame.Combat;
 
 namespace zombieApocalypse.Combat
 {
@@ -36,6 +35,7 @@ namespace zombieApocalypse.Combat
             if ((attacker is Player && defender is Player)
                 || (attacker is Zed && defender is Zed))
             {
+                results.Allies = true;
                 results.Message = "The combatants are allies";
                 return results;
             }
@@ -44,8 +44,9 @@ namespace zombieApocalypse.Combat
                 this.attacker = attacker;
                 this.defender = defender;
                 setAttackerBonuses();
-
-                if (confirmHit())
+                bool attackHit = confirmHit();
+                results.AttackHit = attackHit;
+                if (attackHit)
                 {
                     bool damageHP = false;
                     if (attacker is Zed)
@@ -145,7 +146,6 @@ namespace zombieApocalypse.Combat
             if (baseRoll == 1)
             {
                 results.AttackFail = true;
-
                 return false;
             }
             int strike = MeleePPBonus;
@@ -198,6 +198,7 @@ namespace zombieApocalypse.Combat
         private int defendChance()
         {
             Defense defendOption = defenseChoice();
+            results.DefenseType = defendOption;
             if (defendOption != Defense.None)
             {
                 int defense = D20.Roll();

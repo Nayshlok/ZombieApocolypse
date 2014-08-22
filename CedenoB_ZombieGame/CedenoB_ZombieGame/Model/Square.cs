@@ -16,7 +16,7 @@ namespace CedenoB_ZombieGame
 	public class Square : Canvas
 	{
 		List<Item> Items = new List<Item>();
-		Character Token;
+        public Character Token { get; set; }
 		bool isOpen = false;
         private Delegates.SelectCharacter PassCharacter;
 
