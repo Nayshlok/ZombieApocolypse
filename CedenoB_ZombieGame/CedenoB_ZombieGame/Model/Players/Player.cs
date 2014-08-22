@@ -58,14 +58,15 @@ namespace ZombieApocalypseSimulator
             if (playerChecked.IsLiving == false)
             {
                 playerChecked.ZombifyChance = 5 * turnsDead;
-                int random = rand.Next(0, 100);
+                int random = rand.Next(0, 101);
                 //Chance to become Zombie
                 if (random >= playerChecked.ZombifyChance && random <= playerChecked.ZombifyChance)
                 {
-                   random = rand.Next(0, 102);
+                   random = rand.Next(0, 100);
                    //Zombie Type radomness
                    if (random >= 0 && random <= 39)
                    {
+                       
                        Sloucher sloucher = new Sloucher(playerChecked.Name);
                    }
                    else if (random >= 40 && random <= 59)
