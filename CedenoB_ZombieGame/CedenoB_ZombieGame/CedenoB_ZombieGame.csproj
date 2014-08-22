@@ -54,45 +54,50 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Combat\CombatManager.cs" />
-    <Compile Include="Combat\CombatResults.cs" />
-    <Compile Include="Items\BearTrap.cs" />
-    <Compile Include="Items\HandgunAmmo.cs" />
-    <Compile Include="Items\HealthPack.cs" />
-    <Compile Include="Items\HealthPot.cs" />
-    <Compile Include="Items\LargeCrowbar.cs" />
-    <Compile Include="Items\Machete.cs" />
-    <Compile Include="Items\RifleAmmo.cs" />
-    <Compile Include="Items\ShotgunAmmo.cs" />
-    <Compile Include="Items\SludgeHammer.cs" />
-    <Compile Include="Items\SmallCrowbar.cs" />
-    <Compile Include="Items\Defender.cs" />
-    <Compile Include="Items\Desert.cs" />
-    <Compile Include="Items\Farmer.cs" />
-    <Compile Include="Items\Gangsta.cs" />
-    <Compile Include="Items\Hunter.cs" />
-    <Compile Include="Items\Israli.cs" />
-    <Compile Include="Items\Milita.cs" />
-    <Compile Include="Items\Rouge.cs" />
-    <Compile Include="Items\Slugger.cs" />
-    <Compile Include="Items\Sniper.cs" />
-    <Compile Include="Items\Special.cs" />
-    <Compile Include="Items\Sport.cs" />
-    <Compile Include="Items\Turret.cs" />
+    <Compile Include="Items\Ammo\AmmoPack.cs" />
+    <Compile Include="Items\Ammo\Handgun.cs" />
+    <Compile Include="Items\Ammo\Rifle.cs" />
+    <Compile Include="Items\Ammo\Shotgun.cs" />
+    <Compile Include="Items\Handguns\HandgunAmmoPack.cs" />
+    <Compile Include="Items\Others\BearTrap.cs" />
+    <Compile Include="Items\Ammo\HandgunAmmo.cs" />
+    <Compile Include="Items\Health\HealthPack.cs" />
+    <Compile Include="Items\Health\HealthPot.cs" />
+    <Compile Include="Items\Melee\LargeCrowbar.cs" />
+    <Compile Include="Items\Melee\Machete.cs" />
+    <Compile Include="Items\Ammo\RifleAmmo.cs" />
+    <Compile Include="Items\Ammo\ShotgunAmmo.cs" />
+    <Compile Include="Items\Melee\SludgeHammer.cs" />
+    <Compile Include="Items\Handguns\Defender.cs" />
+    <Compile Include="Items\Rifles\Desert.cs" />
+    <Compile Include="Items\Rifles\RifleAmmoPack.cs" />
+    <Compile Include="Items\Shotguns\Farmer.cs" />
+    <Compile Include="Items\Handguns\Gangsta.cs" />
+    <Compile Include="Items\Rifles\Hunter.cs" />
+    <Compile Include="Items\Handguns\Israli.cs" />
+    <Compile Include="Items\Rifles\Milita.cs" />
+    <Compile Include="Items\Handguns\Rouge.cs" />
+    <Compile Include="Items\Shotguns\ShotgunAmmoPack.cs" />
+    <Compile Include="Items\Shotguns\Slugger.cs" />
+    <Compile Include="Items\Rifles\Sniper.cs" />
+    <Compile Include="Items\Shotguns\Special.cs" />
+    <Compile Include="Items\Handguns\Sport.cs" />
+    <Compile Include="Items\Others\Turret.cs" />
+    <Compile Include="Items\Ammo\GunAmmo.cs" />
+    <Compile Include="Items\AmmoType.cs" />
     <Compile Include="Model\Character.cs" />
-    <Compile Include="Model\Coordinate.cs" />
-    <Compile Include="Model\Delegates.cs" />
     <Compile Include="Model\Dice.cs" />
-    <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\PlayerItem.cs" />
     <Compile Include="Model\MeleeWeapon.cs" />
     <Compile Include="Model\Inventory.cs" />
     <Compile Include="Model\Players\Player.cs" />
     <Compile Include="Model\Players\SharpShooter.cs" />
     <Compile Include="Model\Players\Survivalist.cs" />
     <Compile Include="Model\Players\Warrior.cs" />
-    <Compile Include="Items\SurvivalKnife.cs" />
     <Compile Include="Model\RangedWeapon.cs" />
-    <Compile Include="Model\SmallCrowbar.cs" />
-    <Compile Include="Model\SurvivalKnife.cs" />
+    <Compile Include="Items\Melee\SmallCrowbar.cs" />
+    <Compile Include="Items\Melee\SurvivalKnife.cs" />
+    <Compile Include="Items\Shotguns\Ronin.cs" />
     <Compile Include="Model\Weapon.cs" />
     <Compile Include="Model\Zed\FastAttack.cs" />
     <Compile Include="Model\Zed\Shank.cs" />
@@ -100,12 +105,14 @@
     <Compile Include="Model\Zed\Spitter.cs" />
     <Compile Include="Model\Zed\Tank.cs" />
     <Compile Include="Model\Zed\Zed.cs" />
+    <Compile Include="Testing other things\Clocks.cs" />
     <Compile Include="Testing other things\Entity.cs" />
     <Compile Include="Testing other things\ImageConverter.cs" />
-    <Compile Include="Items\GameImages.cs" />
-    <Compile Include="Items\Item.cs" />
+    <Compile Include="Testing other things\GameImages.cs" />
     <Compile Include="Model\Square.cs" />
-    <Compile Include="View\CombatGUI.cs" />
+    <Compile Include="View\CharacterCreator.xaml.cs">
+      <DependentUpon>CharacterCreator.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -118,6 +125,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\CharacterCreator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -158,6 +169,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Desert.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\DownArrow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Farmer.png">
